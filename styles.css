@@ -1,0 +1,51 @@
+/* Imported Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+body {
+    margin: 0;
+    font-size: 16px;
+    background-image: linear-gradient(to right, #1b1a1c , #252326);
+}
+
+/* Header */
+
+header {
+    margin: 0px;
+    height: 0 auto;
+    padding-left: 80px;
+    padding-right: 80px;
+    text-align: center;
+}
+
+header h1 {
+    font-family: 'Righteous', cursive;
+    font-size: 6em;
+    color: white;
+    filter: drop-shadow(0 0 0.75rem black);
+}
+
+/* Main Content */
+
+main {
+    margin: 80px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    font-family: Helvetica, sans-serif;
+    color: white;
+}
+
+.h2 {
+    font-size: 2em;
+}
+
+.location {
+    display: grid;
+    justify-content: center;
+    text-align: left
+}
+
+.temperature {
+    display: grid;
+    justify-content: center;
+    text-align: left
+}
