@@ -35,7 +35,12 @@ window.addEventListener("load", ()=> {
                  return response.json();
              })
              .then(data => {
-                 console.log(data);
+                 console.log(data); /* Logs data after it was fetched from API */
+                 const {temp} = data.main; /* Cleaner syntax by shortening it this way; within brackets can define what part of data.main you want*/
+                 const {main} = data.weather[0];
+
+                 console.log(temp); /* This prints temperature of the current location */
+                 console.log(main); /* This prints summary of the weather (sunny, cloudy, rain etc) */
              });
         });
     }
