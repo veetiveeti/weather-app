@@ -14,6 +14,8 @@
      If you get this message from OpenWeatherMap: "Invalid API key. Please see http://openweathermap.org/faq#error401 for more info.",
      it might be that your API key has not been activated yet. As per the error 401 information, this might be the issue and you
      might have to wait for a while for it to activate.
+10. No error after API key activated, do not need proxy.
+11. Service now fetches API data, console log works.
 */
 
 window.addEventListener("load", ()=> {
@@ -26,8 +28,7 @@ window.addEventListener("load", ()=> {
             long = position.coords.longitude;
             lat = position.coords.latitude;
 
-            const proxy = `https://cors-anywhere.herokuapp.com/` /*used as a proxy to prevent cross-origin error*/
-            const api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid={c6d3b1d2efe6a958b08601d6f711ba70}`;
+            const api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&APPID=c6d3b1d2efe6a958b08601d6f711ba70`;
 
             fetch(api)
              .then(response => {
