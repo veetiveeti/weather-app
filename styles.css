@@ -49,3 +49,7 @@ main {
     justify-content: center;
     text-align: left;
 }
+
+.temperature-degree {
+    margin-bottom: 20px;
+}

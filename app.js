@@ -21,6 +21,9 @@
 window.addEventListener("load", ()=> {
     let long;
     let lat;
+    let temperatureDescription = document.querySelector(".temperature-description");
+    let temperatureDegree = document.querySelector(".temperature-degree");
+    let locationName = document.querySelector(".location-name");
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position =>{
@@ -36,11 +39,18 @@ window.addEventListener("load", ()=> {
              })
              .then(data => {
                  console.log(data); /* Logs data after it was fetched from API */
-                 const {temp} = data.main; /* Cleaner syntax by shortening it this way; within brackets can define what part of data.main you want*/
-                 const {main} = data.weather[0];
+                 const {temp} = data.main; /* Within brackets can define what part of data.main you want*/
+                 const {main} = data.weather[0]; /* Within brackets can define what part of data.weather (first array) you want */
+                 const {location} = data.name;
 
                  console.log(temp); /* This prints temperature of the current location */
                  console.log(main); /* This prints summary of the weather (sunny, cloudy, rain etc) */
+                 console.log(location);
+
+                 //Set DOM elements from the API
+                 temperatureDescription.textContent = main;
+                 temperatureDegree.textContent = temp;
+                 locationName.textContent = location;
              });
         });
     }
