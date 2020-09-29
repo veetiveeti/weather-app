@@ -21,9 +21,11 @@
 window.addEventListener("load", ()=> {
     let long;
     let lat;
-    let temperatureDescription = document.querySelector(".temperature-description");
-    let temperatureDegree = document.querySelector(".temperature-degree");
-    let locationName = document.querySelector(".location-name");
+    let temperatureDescription = document.querySelector(".card__temperature__description");
+    let temperatureDegree = document.querySelector(".card__temperature__degree");
+    let feelsLike = document.querySelector(".card__temperature__feelslike");
+    let locationName = document.querySelector(".card__location__name");
+    let celsius = ('°C');
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position =>{
@@ -31,7 +33,7 @@ window.addEventListener("load", ()=> {
             long = position.coords.longitude;
             lat = position.coords.latitude;
 
-            const api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&APPID=c6d3b1d2efe6a958b08601d6f711ba70`;
+            const api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&APPID=c6d3b1d2efe6a958b08601d6f711ba70&units=metric`;
 
             fetch(api)
              .then(response => {
@@ -39,20 +41,34 @@ window.addEventListener("load", ()=> {
              })
              .then(data => {
                  console.log(data); /* Logs data after it was fetched from API */
+                 const {name} = data;
                  const {temp} = data.main; /* Within brackets can define what part of data.main you want*/
                  const {main} = data.weather[0]; /* Within brackets can define what part of data.weather (first array) you want */
-                 const {location} = data.name;
+                 const {feels_like} = data.main;
 
+                 console.log(name);
                  console.log(temp); /* This prints temperature of the current location */
                  console.log(main); /* This prints summary of the weather (sunny, cloudy, rain etc) */
-                 console.log(location);
+                 console.log(feels_like);
 
                  //Set DOM elements from the API
-                 temperatureDescription.textContent = main;
-                 temperatureDegree.textContent = temp;
-                 locationName.textContent = location;
+                 locationName.textContent = name;
+                 temperatureDegree.textContent = Math.round(temp)+celsius;
+                 feelsLike.textContent = ('Feels like ') + Math.round(feels_like);
+                 temperatureDescription.textContent = main;  
+                            
              });
+        
+        // Get dates for card__location__date
+        const date = new Date();
+        const today = date.getDate();
+        const currentMonth = date.getMonth();
+        let locationDate = document.querySelector(".card__location__date"); 
+
+        //Set DOM elements
+        locationDate.textContent = today + ('.') + currentMonth + ('.');
+        
         });
     }
-
 });
+

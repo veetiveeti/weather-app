@@ -1,55 +1,78 @@
 /* Imported Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@600;700;800&display=swap");
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    font-size: 16px;
-    background: linear-gradient(to right, #1b1a1c , #252326);
+  margin: 0;
+  padding: 0 20% 0 20%;
+  width: 100%;
+  font-size: 16px;
+  color: #151b2e;
+  background-color: #8c9fb8;
 }
 
 /* Header */
-
-header {
-    margin-top: 40px;
-    height: 0 auto;
-    padding-left: 80px;
-    padding-right: 80px;
-    text-align: center;
-}
-
-header h1 {
-    font-family: 'Righteous', cursive;
-    font-size: 4em;
-    color: white;
-    filter: drop-shadow(0 0 0.75rem black);
+.headline {
+  font-family: "Raleway", Times;
+  font-size: 2em;
+  color: #141720;
+  margin-top: 1em;
+  text-align: center;
 }
 
 /* Main Content */
+.card {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  margin: 2em 10% 0 10%;
+  padding: 5em;
+  height: fit-content;
+  font-family: "Lato", sans-serif;
+  background-color: white;
+  border-radius: 10px;
+  filter: drop-shadow(0 0 4rem #72859c);
+}
+.card__location {
+  display: grid;
+  justify-content: center;
+  text-align: left;
+}
+.card__location__name {
+  margin-bottom: 0.2em;
+  font-size: 3em;
+}
+.card__temperature {
+  display: grid;
+  justify-content: center;
+  text-align: right;
+}
+.card__temperature__degree {
+  margin-bottom: 0.2em;
+  font-size: 3em;
+}
+.card__temperature__feelslike {
+  margin-bottom: 1em;
+}
 
-main {
-    margin: 80px;
+@media only screen and (max-width: 880px) {
+  .card {
     display: grid;
-    grid-template-columns: 50% 50%;
-    font-family: Helvetica, sans-serif;
-    color: white;
+    grid-template-columns: 100%;
+    grid-template-rows: 50% 50%;
+    margin: 2em 2% 0 2%;
+  }
+  .card__temperature {
+    margin-top: 1em;
+  }
+
+  body {
+    padding: 2em 10% 0 10%;
+  }
 }
 
-.h2 {
-    font-size: 2em;
-}
-
-.location, .temperature {
-    display: grid;
-    justify-content: center;
-    text-align: left;
-}
-
-.temperature-degree {
-    margin-bottom: 20px;
-}
+/*# sourceMappingURL=styles.css.map */
