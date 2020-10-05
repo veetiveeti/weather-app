@@ -4,24 +4,45 @@
 
 * {
     margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
     width: 100vw;
+    height: 100vh;
     font-size: 16px;
     color: rgb(21, 27, 46);
-    background-color: #8c9fb8;
+    background: linear-gradient(270deg, #2c4c44, #397566);
+    background-size: 400% 400%;
+    
+    -webkit-animation: BackgroundAnimation 30s ease infinite;
+    -moz-animation: BackgroundAnimation 30s ease infinite;
+    animation: BackgroundAnimation 30s ease infinite;
+    
+    @-webkit-keyframes BackgroundAnimation {
+        0%{background-position:0% 50%}
+        50%{background-position:100% 50%}
+        100%{background-position:0% 50%}
+    }
+    @-moz-keyframes BackgroundAnimation {
+        0%{background-position:0% 50%}
+        50%{background-position:100% 50%}
+        100%{background-position:0% 50%}
+    }
+    @keyframes BackgroundAnimation {
+        0%{background-position:0% 50%}
+        50%{background-position:100% 50%}
+        100%{background-position:0% 50%}
+    }
 }
 
 /* Header */
 .headline {
     font-family: 'Raleway', Times;
     font-size: 2em;
-    color: rgb(21, 27, 46); 
-    margin: 1em 0 1em 0;
+    color: rgb(255, 255, 255); 
+    padding: 1em 0 1em 0;
     text-align: center;
 }
 
@@ -40,7 +61,7 @@ body {
     background-color: white;
     // Borders
     border-radius: 10px;
-    filter: drop-shadow(0 0 4rem rgb(114, 133, 156));  
+    filter: drop-shadow(0 0 4rem #1b1b1b49);  
 
     &__location {
         display: flex;
@@ -51,6 +72,14 @@ body {
         &__name {
             margin-bottom: 0.2em;
             font-size: 3em;
+        }
+
+        &__date {
+            margin-bottom: 1em;
+        }
+
+        &__time {
+            place-content: right;
         }
     }
 
