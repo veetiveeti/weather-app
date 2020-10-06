@@ -16,6 +16,7 @@ body {
     background: linear-gradient(270deg, #2c4c44, #397566);
     background-size: 400% 400%;
     
+    /* Animated gradient background */
     -webkit-animation: BackgroundAnimation 30s ease infinite;
     -moz-animation: BackgroundAnimation 30s ease infinite;
     animation: BackgroundAnimation 30s ease infinite;
@@ -68,6 +69,12 @@ body {
         flex-direction: column;
         text-align: left;
         padding: 3em;
+
+        &__weather-icon {
+            margin: 0;
+            padding: 0;
+            width: fit-content;
+        }
     
         &__name {
             margin-bottom: 0.2em;
@@ -110,7 +117,6 @@ body {
       // Grid
          display: grid;
          grid-template-columns: 100%;
-         grid-template-rows: 50% 50%;
          margin: 0 auto;
          width: 100%;
 

@@ -9,13 +9,6 @@
    fully fetched from the API server
 7. Convert that fetched data by returning it as response.json
 8. App uses that JSON
-9. If there is a cross-origin error, it is because of trying to
-   Access the API locally. Use cors-anywhere.herokuapp.com as a proxy.
-     If you get this message from OpenWeatherMap: "Invalid API key. Please see http://openweathermap.org/faq#error401 for more info.",
-     it might be that your API key has not been activated yet. As per the error 401 information, this might be the issue and you
-     might have to wait for a while for it to activate.
-10. No error after API key activated, do not need proxy.
-11. Service now fetches API data, console log works.
 */
 
 window.addEventListener("load", () => {
@@ -27,6 +20,7 @@ window.addEventListener("load", () => {
   let temperatureDegree = document.querySelector(".card__temperature__degree");
   let feelsLike = document.querySelector(".card__temperature__feelslike");
   let locationName = document.querySelector(".card__location__name");
+  let weatherImage = document.querySelector(".card__location__weather-icon");
   let celsius = "°C";
 
   if (navigator.geolocation) {
@@ -43,22 +37,15 @@ window.addEventListener("load", () => {
         })
         .then((data) => {
           console.log(data); /* Logs data after it was fetched from API */
-          const { name } = data;
-          const {
-            temp,
-          } = data.main; /* Within brackets can define what part of data.main you want*/
-          const {
-            main,
-          } = data.weather[0]; /* Within brackets can define what part of data.weather (first array) you want */
-          const { feels_like } = data.main;
+          const { name } = data; /* Location name related to GPS coordinates of the user */
+          const { temp } = data.main; /* Actual temperature in Celsius */
+          const { main } = data.weather[0]; /* Description of weather: sunny, clouds, rain etc */
+          const { feels_like } = data.main; /* Feels like x Celsius */
+          const { icon } = data.weather[0]; /* Weather icon provided by OpenWeather */
 
           console.log(name);
-          console.log(
-            temp
-          ); /* This prints temperature of the current location */
-          console.log(
-            main
-          ); /* This prints summary of the weather (sunny, cloudy, rain etc) */
+          console.log(temp); /* This prints temperature of the current location */
+          console.log(main); /* This prints summary of the weather (sunny, cloudy, rain etc) */
           console.log(feels_like);
 
           //Set DOM elements from the API
@@ -67,18 +54,11 @@ window.addEventListener("load", () => {
           feelsLike.textContent =
             "Feels like " + Math.round(feels_like) + celsius;
           temperatureDescription.textContent = main;
+          weatherImage.src = "http://openweathermap.org/img/wn/" + icon + "@2x.png"; /* Modifies .card__weather-icon src */
+          weatherImage.alt = "Image describing the current weather, and it is the following: " + main;
         });
     });
   }
-
-  /* Get dates for card__location__date
-  let currentDate = new Date();
-  let today = currentDate.getDate();
-  let month = currentDate.getMonth();
-  let locationDate = document.querySelector(".card__location__date"); */
-
-  //Set DOM element
-  //locationDate.textContent = today + "." + month + ".";
 
   // Gets current time for card__location__time
   function displayCurrentTime() {
@@ -92,7 +72,7 @@ window.addEventListener("load", () => {
     let hours = currentTime.getHours();
     let minutes = currentTime.getMinutes();
     let seconds = currentTime.getSeconds();
-    
+
     hours = addZero(hours);
     minutes = addZero(minutes);
     seconds = addZero(seconds);
@@ -105,8 +85,6 @@ window.addEventListener("load", () => {
     locationTime.textContent = timeString;
 
     let timer = setTimeout(displayCurrentTime, 500);
-    console.log(timer);
-
   }
 
   //Adds 0 before single digit date and time
@@ -119,27 +97,5 @@ window.addEventListener("load", () => {
 
   displayCurrentTime();
 
-  /*
-  function startClock() {
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const seconds = date.getSeconds();
-    minutes = checkTime(minutes);
-    seconds = checkTime(seconds);
-    let locationTime = document.querySelector(".card__location__time");
-    //Set DOM elements
-    locationTime.textContent = hours + ":" + minutes + ":" + seconds;
-
-    setTimeout(startClock, 500);
-  }
-
-  function checkTime(i) {
-    if (i < 10) {
-      i = "0" + i;
-    }
-    return i;
-  }
-
-  startClock();*/
 });
 
