@@ -54,7 +54,7 @@ window.addEventListener("load", () => {
           feelsLike.textContent =
             "Feels like " + Math.round(feels_like) + celsius;
           temperatureDescription.textContent = main;
-          weatherImage.src = "http://openweathermap.org/img/wn/" + icon + "@2x.png"; /* Modifies .card__weather-icon src */
+          weatherImage.src = "https://openweathermap.org/img/wn/" + icon + "@2x.png"; /* Modifies .card__weather-icon src */
           weatherImage.alt = "Image describing the current weather, and it is the following: " + main;
         });
     });
